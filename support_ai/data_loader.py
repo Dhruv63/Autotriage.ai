@@ -1,5 +1,5 @@
 import pandas as pd
-from typing import Dict, List
+from typing import Dict, List, Any
 import logging
 
 class TicketDataLoader:
@@ -54,15 +54,6 @@ class TicketDataLoader:
                     self.logger.warning(f"Adding missing column '{col}' with default value")
                     self.df[col] = default_value
             
-            # Clean text columns
-            text_columns = ['Issue Category', 'Sentiment', 'Priority', 'Solution', 'Resolution Status']
-            for col in text_columns:
-                if col in self.df.columns:
-                    self.df[col] = self.df[col].fillna('Unknown').astype(str).str.strip()
-            
-            # Convert Resolution Time to float
-            self.df['Resolution Time'] = pd.to_numeric(self.df['Resolution Time'], errors='coerce').fillna(24.0)
-            
         except Exception as e:
             self.logger.error(f"Error initializing TicketDataLoader: {str(e)}")
             # Create empty DataFrame with required columns
@@ -96,8 +87,3 @@ class TicketDataLoader:
         """Get similar historical cases for a given issue category"""
         similar_cases = self.df[self.df["Issue Category"] == issue_category].head(limit)
         return similar_cases.to_dict('records')
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
