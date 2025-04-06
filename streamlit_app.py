@@ -4,6 +4,8 @@ from support_ai.pipeline import SupportPipeline
 from support_ai.data_loader import TicketDataLoader
 import plotly.graph_objects as go
 import time
+import os
+import logging
 
 # Page config
 st.set_page_config(
@@ -17,8 +19,21 @@ if 'history' not in st.session_state:
     st.session_state.history = []
 
 def load_data():
-    data_path = "[Usecase 7] AI-Driven Customer Support Enhancing Efficiency Through Multiagents/Historical_ticket_data.csv"
-    return TicketDataLoader(data_path)
+    try:
+        data_path = "[Usecase 7] AI-Driven Customer Support Enhancing Efficiency Through Multiagents/Historical_ticket_data.csv"
+        if not os.path.exists(data_path):
+            st.error(f"Dataset not found at: {data_path}")
+            st.info("Please ensure the dataset file is in the correct location.")
+            return None
+        
+        loader = TicketDataLoader(data_path)
+        if loader.df.empty:
+            st.warning("No data loaded. Using default values for demonstration.")
+        return loader
+    except Exception as e:
+        st.error("Error loading data. Please check the logs for details.")
+        logging.error(f"Data loading error: {str(e)}")
+        return None
 
 def analyze_conversation(conversation_text, historical_data):
     pipeline = SupportPipeline()
@@ -53,6 +68,9 @@ def main():
     
     # Load data
     data_loader = load_data()
+    if data_loader is None:
+        st.stop()
+    
     historical_data = data_loader.get_training_data()
     
     # Input section
@@ -184,6 +202,7 @@ Customer: "Upgrading worked! Thanks for the quick fix!"
 
 if __name__ == "__main__":
     main()
+
 
 
 
