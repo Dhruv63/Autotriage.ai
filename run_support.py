@@ -1,6 +1,6 @@
 from support_ai.pipeline import SupportPipeline
 from support_ai.data_loader import TicketDataLoader
-<<<<<<< HEAD
+
 from colorama import init, Fore, Style
 import json
 import time
@@ -97,7 +97,7 @@ def process_support_ticket(conversation_text: str):
     return result
 
 # Example usage
->>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
+
 if __name__ == "__main__":
     # Example conversation
     conversation = """
@@ -107,7 +107,6 @@ if __name__ == "__main__":
     """
     
     result = process_support_ticket(conversation)
-<<<<<<< HEAD
 
-=======
->>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
+
+
