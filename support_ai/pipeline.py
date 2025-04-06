@@ -1,10 +1,14 @@
 from typing import Dict, Any
 from .analyzer import TicketAnalyzer
+<<<<<<< HEAD
 import logging
+=======
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
 
 class SupportPipeline:
     def __init__(self):
         self.analyzer = TicketAnalyzer()
+<<<<<<< HEAD
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
     
@@ -48,4 +52,24 @@ class SupportPipeline:
             self.logger.error(f"Error in pipeline: {str(e)}")
             raise
 
+=======
+    
+    def process(self, chat_text: str, ticket_data: Dict[str, Any]) -> Dict[str, Any]:
+        # Analyze the ticket
+        result = self.analyzer.analyze_ticket(chat_text, ticket_data)
+        
+        # Convert to dictionary format
+        return {
+            "summary": result.summary,
+            "extracted_issue": result.issue,
+            "suggested_solution": result.solution,
+            "priority_level": result.priority,
+            "assigned_team": result.team,
+            "estimated_resolution_time": result.estimated_time,
+            "confidence_score": result.confidence,
+            "similar_cases": result.similar_cases,
+            "action_items": result.action_items,
+            "sentiment": result.sentiment
+        }
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
 

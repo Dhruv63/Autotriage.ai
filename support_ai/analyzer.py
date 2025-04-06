@@ -4,8 +4,11 @@ from datetime import datetime
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+<<<<<<< HEAD
 import subprocess
 import random
+=======
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
 
 @dataclass
 class AnalysisResult:
@@ -39,8 +42,12 @@ class TicketAnalyzer:
             # Use the solution from the most similar case
             return similar_cases[0]['solution']
         
+<<<<<<< HEAD
         prompt = (f"Given this technical issue:\n{issue}\n\n"
                  "Provide a clear, step-by-step solution in bullet points.")
+=======
+        prompt = f"Suggest a solution for this technical issue:\n\n{issue}"
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
         return self.query_llm(prompt).strip()
     
     def determine_priority(self, issue: str, sentiment: str) -> str:
@@ -84,6 +91,7 @@ class TicketAnalyzer:
         return 'Technical'  # Default team
     
     def calculate_confidence(self, issue: str, similar_cases: List[Dict]) -> float:
+<<<<<<< HEAD
         # Start with a lower base confidence
         base_confidence = 0.2
         
@@ -177,6 +185,31 @@ class TicketAnalyzer:
                     "2. Check system logs\n"
                     "3. Test in isolation\n"
                     "4. Contact support if issue persists")
+=======
+        if not similar_cases:
+            return 0.5  # Base confidence
+            
+        # Use the highest similarity score as confidence
+        return max(case['similarity'] for case in similar_cases)
+    
+    def calculate_similarity(self, text1: str, text2: str) -> float:
+        # Vectorize the texts
+        vectors = self.vectorizer.fit_transform([text1, text2])
+        # Calculate cosine similarity
+        similarity = cosine_similarity(vectors[0:1], vectors[1:2])[0][0]
+        return similarity
+    
+    def query_llm(self, prompt: str) -> str:
+        # Simplified LLM query - replace with actual implementation
+        # This is a placeholder that returns basic responses
+        if "summarize" in prompt.lower():
+            return "Customer reported a technical issue and received assistance."
+        elif "extract" in prompt.lower():
+            return "Software installation failure with unknown error."
+        elif "solution" in prompt.lower():
+            return "Check system compatibility and retry installation."
+        return "Response not available."
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
     
     def analyze_sentiment(self, text: str) -> str:
         prompt = f"Analyze the sentiment in this text and respond with one word (Positive/Negative/Neutral):\n{text}"
@@ -214,6 +247,7 @@ class TicketAnalyzer:
         return actions
     
     def find_similar_cases(self, issue: str, historical_data: Dict) -> List[Dict]:
+<<<<<<< HEAD
         if not historical_data.get('issues'):
             return []
         
@@ -237,6 +271,29 @@ class TicketAnalyzer:
                     "priority": historical_data.get('priorities', [])[idx] if historical_data.get('priorities') else 'Medium',
                     "sentiment": historical_data.get('sentiments', [])[idx] if historical_data.get('sentiments') else 'Neutral'
                 }
+=======
+        similarities = [self.calculate_similarity(issue, hist_issue) 
+                       for hist_issue in historical_data['issues']]
+        
+        top_indices = np.argsort(similarities)[-3:][::-1]
+        
+        similar_cases = []
+        for i in top_indices:
+            if similarities[i] > 0.5:
+                case = {
+                    "issue": historical_data['issues'][i],
+                    "solution": historical_data['solutions'][i],
+                    "similarity": similarities[i],
+                    "priority": historical_data.get('priorities', ['Medium'] * len(historical_data['issues']))[i],
+                    "sentiment": historical_data.get('sentiments', ['Neutral'] * len(historical_data['issues']))[i],
+                }
+                # Add resolution time if available
+                if 'resolution_times' in historical_data:
+                    case["resolution_time"] = historical_data['resolution_times'][i]
+                else:
+                    case["resolution_time"] = 24.0  # Default to 24 hours
+                
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
                 similar_cases.append(case)
         
         return similar_cases
@@ -276,6 +333,7 @@ class TicketAnalyzer:
         )
 
 
+<<<<<<< HEAD
 
 
 
@@ -283,3 +341,5 @@ class TicketAnalyzer:
 
 
 
+=======
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c

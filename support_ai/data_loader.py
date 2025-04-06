@@ -15,6 +15,7 @@ class TicketDataLoader:
         
     def get_training_data(self) -> Dict[str, List[str]]:
         """Prepare historical data for the recommender system"""
+<<<<<<< HEAD
         try:
             return {
                 "issues": self.df["Issue Category"].str.strip().tolist(),
@@ -31,10 +32,23 @@ class TicketDataLoader:
                 "issues": [], "sentiments": [], "priorities": [],
                 "solutions": [], "resolution_times": [], "statuses": []
             }
+=======
+        return {
+            "issues": self.df["Issue Category"].str.strip().tolist(),
+            "sentiments": self.df["Sentiment"].str.strip().tolist(),
+            "priorities": self.df["Priority"].str.strip().tolist(),
+            "solutions": self.df["Solution"].str.strip().tolist(),
+            "resolution_times": self.df["Resolution Time"].tolist(),
+            "statuses": self.df["Resolution Status"].str.strip().tolist()
+        }
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
     
     def get_similar_cases(self, issue_category: str, limit: int = 3) -> List[Dict[str, Any]]:
         """Get similar historical cases for a given issue category"""
         similar_cases = self.df[self.df["Issue Category"] == issue_category].head(limit)
         return similar_cases.to_dict('records')
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c

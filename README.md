@@ -1,4 +1,8 @@
 # AutoTriage.AI
+<<<<<<< HEAD
+=======
+#alert since ollama runs locally the hosted model isn't showing any new output
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
 
 > Let AI diagnose your support mess
 
@@ -19,7 +23,11 @@ AutoTriage.AI is an AI-powered system that automatically analyzes, categorizes, 
 
 1. Clone the repository:
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/yourusername/autotriage-ai.git
+=======
+git clone https://github.com/Dhruv63/Autotriage.ai.git
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
 cd autotriage-ai
 ```
 
@@ -84,4 +92,8 @@ MIT License - see LICENSE file for details
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
+<<<<<<< HEAD
 5. Open a Pull Request
+=======
+5. Open a Pull Request
+>>>>>>> 9aea4644744df0c5ff9b7bfec7c7e29a98148e7c
