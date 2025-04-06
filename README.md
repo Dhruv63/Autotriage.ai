@@ -1,4 +1,5 @@
 # AutoTriage.AI
+#alert since ollama runs locally the hosted model isn't showing any new output
 
 > Let AI diagnose your support mess
 
