@@ -1,8 +1,8 @@
-pandas
-sentence-transformers
-torch
-ollama
-colorama
-scikit-learn
-numpy
-
+streamlit==1.29.0
+pandas==2.1.4
+plotly==5.18.0
+colorama==0.4.6
+scikit-learn==1.3.2
+numpy==1.26.2
+sentence-transformers==2.2.2
+torch==2.1.2
