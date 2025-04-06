@@ -87,7 +87,4 @@ class TicketDataLoader:
         """Get similar historical cases for a given issue category"""
         similar_cases = self.df[self.df["Issue Category"] == issue_category].head(limit)
         return similar_cases.to_dict('records')
-<<<<<<< HEAD
-=======
 
->>>>>>> 3ee00c6f64a7ff60cda752a21bbb90f98f9ebd65
