@@ -1,0 +1,8 @@
+pandas
+sentence-transformers
+torch
+ollama
+colorama
+scikit-learn
+numpy
+
