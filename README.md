@@ -19,7 +19,7 @@ AutoTriage.AI is an AI-powered system that automatically analyzes, categorizes, 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Dhruv63/Autotriage-ai.git
+git clone https://github.com/Dhruv63/Autotriage.ai.git
 cd autotriage-ai
 ```
 
